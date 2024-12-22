@@ -1,0 +1,328 @@
+# "C:\Users\BCS\.glzr\glazewm\config.yaml"
+# "C:\Users\BCS\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Startup glazewm.lnk"
+
+general:
+  # Commands to run when the WM has started (e.g. to run a script or launch
+  # another application). Here we are running a batch script to start Zebar.
+  startup_commands: [
+    "shell-exec zebar",
+    "shell-exec C:\\Users\\BCS\\AppData\\Local\\slack\\slack.exe",
+    "shell-exec C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2024.345.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
+    "shell-exec C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+    # "shell-exec alacritty", 
+    # "shell-exec code",
+    # "shell-exec taskkill /IM WindowsTerminal.exe /F"
+  ]
+
+  shutdown_commands: ['shell-exec taskkill /IM zebar.exe /F']
+  config_reload_commands: []
+
+
+  focus_follows_cursor: true
+  toggle_workspace_on_refocus: false
+  
+  cursor_jump:
+    # Whether to automatically move the cursor on the specified trigger.
+    enabled: true
+    # Trigger for cursor jump:
+
+    # - 'monitor_focus': Jump when focus changes between monitors.
+    # - 'window_focus': Jump when focus changes between windows.
+    # trigger: "monitor_focus"
+    trigger: "window_focus"
+
+  show_all_in_taskbar: true
+
+
+gaps:
+  # Gap between adjacent windows.
+  inner_gap: "10px"
+
+  # Gap between windows and the screen edge.
+  outer_gap:
+    top: "40px"
+    right: "10px"
+    bottom: "10px"
+    left: "10px"
+
+
+window_effects:
+  # Visual effects to apply to the focused window.
+  focused_window:
+    # Highlight the window with a colored border.
+    # ** Exclusive to Windows 11 due to API limitations.
+    border:
+      enabled: true
+      color: '#1dbcf1'
+      
+  # Visual effects to apply to non-focused windows.
+  other_windows:
+    border:
+      enabled: true
+      color: "#a1a1a1"
+
+
+window_behavior:
+  # New windows are created in this state whenever possible.
+  # Allowed values: 'tiling', 'floating'.
+  initial_state: "tiling"
+  # Sets the default options for when a new window is created. This also
+  # changes the defaults for when the state change commands, like
+  # `set-floating`, are used without any flags.
+
+  state_defaults:
+    floating:
+      # Whether to center floating windows by default.
+      centered: true
+      # Whether to show floating windows as always on top.
+
+      shown_on_top: true
+    fullscreen:
+      # Maximize the window if possible. If the window doesn't have a
+      # maximize button, then it'll be fullscreen'ed normally instead.
+      maximized: false
+
+      shown_on_top: false
+
+
+workspaces:
+  - name: "1"
+    bind_to_monitor: 2   # Assign workspace 1 to monitor 1
+  - name: "2"
+    bind_to_monitor: 7
+  - name: "3"
+    # bind_to_monitor: 7
+  - name: "4"
+    bind_to_monitor: 1    # Assign workspace 3 to monitor 3
+  - name: "5"
+  - name: "6"
+  - name: "7"
+  - name: "8"
+  - name: "9"
+
+window_rules:
+  - commands: ["move --workspace 1"]
+    match:
+      - window_process: { regex: "slack" }
+      
+  - commands:  ["move --workspace 2"]
+    match:
+      - window_process: { regex: "ChatGPT" }
+
+  - commands: ["move --workspace 3"]
+    match:
+      - window_process: { regex: "msedge" }
+
+  - commands: ["move --workspace 4"]
+    match:
+      - window_process: { regex: "WindowsTerminal" }
+
+  # - commands: ["move --workspace 4"]
+  #   match:
+  #     - window_process: { regex: "Code" }   
+
+
+
+  - commands: ["ignore"]
+    match:
+      # Ignores any Zebar windows.
+      - window_process: {equals: "zebar"}
+      - window_title: {regex: "[Pp]icture.in.[Pp]icture"}
+        # Ignores picture-in-picture windows for browsers.
+        window_class: {regex: "Chrome_WidgetWin_1|MozillaDialogClass"}
+      - window_process: {equals: "PowerToys.PowerAccent"}
+        # Ignore rules for various 3rd-party apps.
+      - window_process: {equals: "Lively"}
+        window_class: {regex: "HwndWrapper*"}
+
+
+binding_modes:
+  # When enabled, the focused window can be resized via arrow keys or HJKL.
+  - name: "resize"
+    keybindings:
+      - commands: ["resize --width -2%"]
+        bindings: ["h", "left"]
+      - commands: ["resize --width +2%"]
+        bindings: ["l", "right"]
+      - commands: ["resize --height +2%"]
+        bindings: ["k", "up"]
+      - commands: ["resize --height -2%"]
+        bindings: ["j", "down"]
+
+      - commands: ["wm-disable-binding-mode --name resize"]
+        bindings: ["alt+shift+r"]
+
+  - name: "stop"
+    # When enabled, all keybindings are disabled except for alt+shift+p which
+    # returns to default keybindings.
+    keybindings:
+      - commands: ["wm-disable-binding-mode --name stop"]
+        bindings: ["alt+shift+s"]
+
+
+################################################
+keybindings:
+  # Shift focus in a given direction.
+  - commands: ["focus --direction left"]
+    bindings: ["alt+h", "alt+left"]
+  - commands: ["focus --direction right"]
+    bindings: ["alt+l", "alt+right"]
+  - commands: ["focus --direction up"]
+    bindings: ["alt+k", "alt+up"]
+  - commands: ["focus --direction down"]
+    bindings: ["alt+j", "alt+down"]
+  - commands: ["move --direction left"]
+
+    # Move focused window in a given direction.
+    bindings: ["alt+shift+h", "alt+shift+left"]
+  - commands: ["move --direction right"]
+    bindings: ["alt+shift+l", "alt+shift+right"]
+  - commands: ["move --direction up"]
+    bindings: ["alt+shift+k", "alt+shift+up"]
+  - commands: ["move --direction down"]
+    bindings: ["alt+shift+j", "alt+shift+down"]
+
+    # Resize focused window by a percentage or pixel amount.
+  # - commands: ["resize --width -2%"]
+  #   bindings: ["alt+u"]
+  # - commands: ["resize --width +2%"]
+  #   bindings: ["alt+p"]
+  # - commands: ["resize --height +2%"]
+  #   bindings: ["alt+o"]
+  # - commands: ["resize --height -2%"]
+  #   bindings: ["alt+i"]
+
+    # As an alternative to the resize keybindings above, resize mode enables
+    # the name 'resize'.
+  - commands: ["wm-enable-binding-mode --name resize"]
+    bindings: ["alt+r"]
+
+    # Disables all keybindings until alt+shift+s is pressed.
+  - commands: ["wm-enable-binding-mode --name stop"]
+    bindings: ["alt+s"]
+
+    # Change tiling direction. This determines where new tiling windows will
+    # be inserted.
+  - commands: ["toggle-tiling-direction"]
+    bindings: ["alt+v"]
+    
+    
+    # Change focus from tiling windows -> floating -> fullscreen.
+  # - commands: ["wm-cycle-focus"]
+  #   bindings: ["alt+v"]
+
+    # Change the focused window to be floating.
+  - commands: ["toggle-floating --centered"]
+    bindings: ["alt+f"]
+    
+    # Change the focused window to be tiling.
+  - commands: ["toggle-tiling"]
+    bindings: ["alt+t"]
+
+# Change the focused window to be fullscreen.
+  #- commands: ["toggle-fullscreen"]
+    #bindings: ["alt+f"]
+
+# Minimize focused window.
+  # - commands: ["toggle-minimized"]
+  #   bindings: ["alt+m"]
+
+    # Close focused window.
+  - commands: ["close"]
+    bindings: ["alt+q"]
+
+# Kill GlazeWM process safely.1
+  - commands: ["wm-exit"]
+    bindings: ["alt+shift+escape"]
+
+# Reload configuration file.
+  - commands: ["wm-reload-config"]
+    bindings: ["alt+escape"]
+
+# Redraw all windows.
+  - commands: ["wm-redraw"]
+    bindings: ["alt+shift+w"]
+    
+# Custom Binds
+    ##############################################################
+
+  - commands: ["shell-exec alacritty"]
+    bindings: ["alt+enter"]
+
+  - commands: ["shell-exec C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2024.345.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe"]
+    bindings: ["alt+a"]
+
+  - commands: ["shell-exec C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.3.1\\bin\\idea64.exe"]
+    bindings: ["alt+i"]
+
+  - commands: ["shell-exec C:\\Users\\BCS\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"]
+    bindings: ["alt+c"]
+
+  - commands: ["shell-exec C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"]
+    bindings: ["alt+e"]
+
+    ##############################################################
+
+  # - commands: ["focus --next-workspace"]
+  #   # Focus the next/previous workspace defined in `workspaces` config.
+
+  #   bindings: ["alt+s"]
+  # - commands: ["focus --prev-workspace"]
+  #   bindings: ["alt+a"]
+  # - commands: ["focus --recent-workspace"]
+    # Focus the workspace that last had focus.
+    # bindings: ["alt+d"]
+
+
+# Change focus to a workspace defined in `workspaces` config.
+  - commands: ["focus --workspace 1"]
+    bindings: ["alt+1"]
+  - commands: ["focus --workspace 2"]
+    bindings: ["alt+2"]
+  - commands: ["focus --workspace 3"]
+    bindings: ["alt+3"]
+  - commands: ["focus --workspace 4"]
+    bindings: ["alt+4"]
+  - commands: ["focus --workspace 5"]
+    bindings: ["alt+5"]
+  - commands: ["focus --workspace 6"]
+    bindings: ["alt+6"]
+  - commands: ["focus --workspace 7"]
+    bindings: ["alt+7"]
+  - commands: ["focus --workspace 8"]
+    bindings: ["alt+8"]
+  - commands: ["focus --workspace 9"]
+    bindings: ["alt+9"]
+
+    
+  # - commands: ["move-workspace --direction left"]
+  #   # Move the focused window's parent workspace to a monitor in a given
+  #   # direction.
+  #   bindings: ["alt+shift+a"]
+  # - commands: ["move-workspace --direction right"]
+  #   bindings: ["alt+shift+f"]
+  # - commands: ["move-workspace --direction up"]
+  #   bindings: ["alt+shift+d"]
+  # - commands: ["move-workspace --direction down"]
+  #   bindings: ["alt+shift+s"]
+
+
+  # Move focused window to a workspace defined in `workspaces` config.
+  - commands: ["move --workspace 1", "focus --workspace 1"]
+    bindings: ["alt+shift+1"]
+  - commands: ["move --workspace 2", "focus --workspace 2"]
+    bindings: ["alt+shift+2"]
+  - commands: ["move --workspace 3", "focus --workspace 3"]
+    bindings: ["alt+shift+3"]
+  - commands: ["move --workspace 4", "focus --workspace 4"]
+    bindings: ["alt+shift+4"]
+  - commands: ["move --workspace 5", "focus --workspace 5"]
+    bindings: ["alt+shift+5"]
+  - commands: ["move --workspace 6", "focus --workspace 6"]
+    bindings: ["alt+shift+6"]
+  - commands: ["move --workspace 7", "focus --workspace 7"]
+    bindings: ["alt+shift+7"]
+  - commands: ["move --workspace 8", "focus --workspace 8"]
+    bindings: ["alt+shift+8"]
+  - commands: ["move --workspace 9", "focus --workspace 9"]
+    bindings: ["alt+shift+9"]

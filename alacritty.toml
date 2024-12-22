@@ -1,0 +1,76 @@
+# "C:\Users\BCS\AppData\Roaming\alacritty\alacritty.toml"
+
+# General Settings
+[window]
+opacity = 0.7                        # Background transparency
+dynamic_title = true                 # Allow dynamic title changes
+decorations = "none"                 # Remove window decorations
+dimensions = { columns = 80, lines = 24 }
+padding = { x = 0, y = 0 }           # Padding around the terminal content
+startup_mode = "Windowed"
+
+[scrolling]
+history = 10000                      # Increase scrollback buffer
+
+# Font Configuration
+[font]
+size = 15.0                          # Font size
+#normal = { family = "Iosevka Custom", style = "Regular" }
+#bold = { family = "Iosevka Custom", style = "Bold" }
+#italic = { family = "Iosevka Custom", style = "Italic" }
+
+[font.offset]
+x = 0                                # Adjust for custom font width
+y = 0
+#glyph_offset = { x = 0, y = 0 }
+
+# Cursor Configuration
+[cursor]
+style = { shape = "Block", blinking = "On" }
+blink_interval = 500
+
+# Colors and Theme
+[colors]
+primary = { background = "#0c0b0f", foreground = "#bea3c7" }
+
+[colors.normal]
+black = "#000000"
+red = "#ff5555"
+green = "#50fa7b"
+yellow = "#f1fa8c"
+blue = "#bd93f9"
+magenta = "#ff79c6"
+cyan = "#8be9fd"
+white = "#f8f8f2"
+
+[colors.bright]
+black = "#4d4d4d"
+red = "#ff6e67"
+green = "#5af78e"
+yellow = "#f4f99d"
+blue = "#caa9fa"
+magenta = "#ff92d0"
+cyan = "#9aedfe"
+white = "#e6e6e6"
+
+[colors.cursor]
+cursor = "#bea3c7"
+text = "#0c0b0f"
+
+[colors.selection]
+text = "#0c0b0f"
+background = "#bea3c7"
+
+# Keybindings for Splits and Pane Navigation
+[keyboard]
+bindings = [
+    { key = "E", mods = "Control|Shift|Alt", action = "ToggleFullscreen" },
+    { key = "H", mods = "Control|Shift|Alt", command = { program = "alacritty", args = ["--split", "right"] }},
+    { key = "V", mods = "Control|Shift|Alt", command = { program = "alacritty", args = ["--split", "down"] }},
+    { key = "U", mods = "Control|Shift", action = "ScrollPageUp" },
+    { key = "I", mods = "Control|Shift", action = "ScrollPageDown" },
+]
+
+# Shell Configuration (PowerShell by Default)
+[terminal]
+shell = { program = "C:/Users/BCS/Documents/start_nu.bat" }
