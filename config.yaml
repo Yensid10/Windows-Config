@@ -302,6 +302,9 @@ keybindings:
   - commands: ["shell-exec explorer.exe"]
     bindings: ["alt+f"]
 
+  - commands: ["shell-exec C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe --app=https://www.youtube.com/"]
+    bindings: ["alt+y"]
+
     ##############################################################
 
   # - commands: ["focus --next-workspace"]
