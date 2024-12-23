@@ -1,12 +1,12 @@
-# "C:\Users\BCS\.glzr\glazewm\config.yaml"
-# "C:\Users\BCS\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Startup glazewm.lnk"
+# "%USERPROFILE%\.glzr\glazewm\config.yaml"
+# "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Startup glazewm.lnk"
 
 general:
   # Commands to run when the WM has started (e.g. to run a script or launch
   # another application). Here we are running a batch script to start Zebar.
   startup_commands: [
     "shell-exec zebar",
-    "shell-exec C:\\Users\\BCS\\AppData\\Local\\slack\\slack.exe",
+    "shell-exec %USERPROFILE%\\AppData\\Local\\slack\\slack.exe",
     "shell-exec C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2024.345.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
     "shell-exec C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
     # "shell-exec alacritty", 
@@ -18,7 +18,7 @@ general:
   config_reload_commands: []
 
 
-  focus_follows_cursor: true
+  focus_follows_cursor: false
   toggle_workspace_on_refocus: false
   
   cursor_jump:
@@ -86,19 +86,38 @@ window_behavior:
 
 
 workspaces:
+
+  ########## DESKTOP ##########
+
   - name: "1"
-    bind_to_monitor: 2   # Assign workspace 1 to monitor 1
+    # bind_to_monitor:  4
   - name: "2"
-    bind_to_monitor: 7
+    bind_to_monitor: 1
   - name: "3"
-    # bind_to_monitor: 7
+    bind_to_monitor: 1
   - name: "4"
-    bind_to_monitor: 1    # Assign workspace 3 to monitor 3
+    bind_to_monitor: 2
   - name: "5"
   - name: "6"
   - name: "7"
   - name: "8"
   - name: "9"
+
+    ########## Laptop ##########
+
+  # - name: "1"
+  #   bind_to_monitor:  2
+  # - name: "2"
+  #   bind_to_monitor: 7
+  # - name: "3"
+  #   # bind_to_monitor: 7
+  # - name: "4"
+  #   bind_to_monitor: 1
+  # - name: "5"
+  # - name: "6"
+  # - name: "7"
+  # - name: "8"
+  # - name: "9"
 
 window_rules:
   - commands: ["move --workspace 1"]
@@ -113,9 +132,9 @@ window_rules:
     match:
       - window_process: { regex: "msedge" }
 
-  - commands: ["move --workspace 4"]
-    match:
-      - window_process: { regex: "WindowsTerminal" }
+  # - commands: ["move --workspace 4"]
+  #   match:
+  #     - window_process: { regex: "WindowsTerminal" }
 
   # - commands: ["move --workspace 4"]
   #   match:
@@ -150,7 +169,7 @@ binding_modes:
         bindings: ["j", "down"]
 
       - commands: ["wm-disable-binding-mode --name resize"]
-        bindings: ["alt+shift+r"]
+        bindings: ["alt+shift+r", "escape"]
 
   - name: "stop"
     # When enabled, all keybindings are disabled except for alt+shift+p which
@@ -211,9 +230,13 @@ keybindings:
   # - commands: ["wm-cycle-focus"]
   #   bindings: ["alt+v"]
 
+
+
     # Change the focused window to be floating.
-  - commands: ["toggle-floating --centered"]
-    bindings: ["alt+f"]
+  # - commands: ["toggle-floating --centered"]
+  #   bindings: ["alt+f"]
+
+
     
     # Change the focused window to be tiling.
   - commands: ["toggle-tiling"]
@@ -253,13 +276,31 @@ keybindings:
     bindings: ["alt+a"]
 
   - commands: ["shell-exec C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.3.1\\bin\\idea64.exe"]
-    bindings: ["alt+i"]
+    bindings: ["alt+u"]
 
-  - commands: ["shell-exec C:\\Users\\BCS\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"]
+  - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"]
     bindings: ["alt+c"]
 
   - commands: ["shell-exec C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"]
     bindings: ["alt+e"]
+
+  - commands: ["shell-exec C:\\Program Files\\iTunes\\iTunes.exe"]
+    bindings: ["alt+i"]
+
+  - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\Opera GX\\opera.exe"]
+    bindings: ["alt+o"]
+
+  - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\GitHubDesktop\\GitHubDesktop.exe"]
+    bindings: ["alt+g"]
+
+  - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Discord\\app-1.0.9175\\Discord.exe"]
+    bindings: ["alt+d"]
+
+  - commands: ["shell-exec desk.cpl"]
+    bindings: ["alt+m"]
+
+  - commands: ["shell-exec explorer.exe"]
+    bindings: ["alt+f"]
 
     ##############################################################
 
