@@ -275,7 +275,7 @@ keybindings:
   - commands: ["shell-exec C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2024.345.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe"]
     bindings: ["alt+a"]
 
-  - commands: ["shell-exec C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.3.1\\bin\\idea64.exe"]
+  - commands: ["shell-exec C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.3\\bin\\idea64.exe"]
     bindings: ["alt+u"]
 
   - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"]
