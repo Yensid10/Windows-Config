@@ -7,7 +7,7 @@ general:
   startup_commands: [
     "shell-exec zebar",
     "shell-exec %USERPROFILE%\\AppData\\Local\\slack\\slack.exe",
-    "shell-exec C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2024.345.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
+    "shell-exec C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2025.7.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
     "shell-exec C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
     # "shell-exec alacritty", 
     # "shell-exec code",
@@ -172,11 +172,11 @@ binding_modes:
         bindings: ["alt+shift+r", "escape"]
 
   - name: "stop"
-    # When enabled, all keybindings are disabled except for alt+shift+p which
+    # When enabled, all keybindings are disabled except for alt+shift+s which
     # returns to default keybindings.
     keybindings:
       - commands: ["wm-disable-binding-mode --name stop"]
-        bindings: ["alt+shift+s"]
+        bindings: ["escape"]
 
 
 ################################################
@@ -218,7 +218,7 @@ keybindings:
 
     # Disables all keybindings until alt+shift+s is pressed.
   - commands: ["wm-enable-binding-mode --name stop"]
-    bindings: ["alt+s"]
+    bindings: ["alt+shift+s"]
 
     # Change tiling direction. This determines where new tiling windows will
     # be inserted.
@@ -272,7 +272,7 @@ keybindings:
   - commands: ["shell-exec alacritty"]
     bindings: ["alt+enter"]
 
-  - commands: ["shell-exec C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2024.345.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe"]
+  - commands: ["shell-exec C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2025.7.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe"]
     bindings: ["alt+a"]
 
   - commands: ["shell-exec C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.3\\bin\\idea64.exe"]
@@ -280,7 +280,7 @@ keybindings:
 
   - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"]
     bindings: ["alt+c"]
-
+  
   - commands: ["shell-exec C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"]
     bindings: ["alt+e"]
 
@@ -293,7 +293,7 @@ keybindings:
   - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\GitHubDesktop\\GitHubDesktop.exe"]
     bindings: ["alt+g"]
 
-  - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Discord\\app-1.0.9175\\Discord.exe"]
+  - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Discord\\app-1.0.9177\\Discord.exe"]
     bindings: ["alt+d"]
 
   - commands: ["shell-exec desk.cpl"]
@@ -304,6 +304,18 @@ keybindings:
 
   - commands: ["shell-exec C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe --app=https://www.youtube.com/"]
     bindings: ["alt+y"]
+
+  - commands: ["shell-exec C:\\Program Files\\Adobe\\Adobe Premiere Pro 2025\\Adobe Premiere Pro.exe"]
+    bindings: ["alt+p"]
+
+  - commands: ["shell-exec C:\\Users\\bensh\\AppData\\Local\\Programs\\Notion\\Notion.exe"]
+    bindings: ["alt+n"]
+
+  - commands: ["shell-exec C:\\Users\\bensh\\AppData\\Local\\Programs\\cron-web\\Notion Calendar.exe"]
+    bindings: ["alt+shift+n"]
+
+  - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\slack\\slack.exe"]
+    bindings: ["alt+s"]
 
     ##############################################################
 
