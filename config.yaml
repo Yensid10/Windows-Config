@@ -90,14 +90,13 @@ workspaces:
   ########## DESKTOP ##########
 
   - name: "1"
-    # bind_to_monitor:  4
   - name: "2"
-    bind_to_monitor: 1
   - name: "3"
     bind_to_monitor: 1
   - name: "4"
-    bind_to_monitor: 2
+    bind_to_monitor: 1
   - name: "5"
+    bind_to_monitor: 2
   - name: "6"
   - name: "7"
   - name: "8"
@@ -123,6 +122,14 @@ window_rules:
   - commands: ["move --workspace 1"]
     match:
       - window_process: { regex: "slack" }
+
+  - commands: ["move --workspace 2"]
+    match:
+      - window_process: { regex: "Discord" }
+
+  - commands: ["move --workspace 1"]
+    match:
+      - window_process: { regex: "iTunes" }
       
   - commands:  ["move --workspace 2"]
     match:
@@ -282,9 +289,12 @@ keybindings:
   - commands: ["shell-exec %USERPROFILE%\\Git\\Windows-Config\\Shortcuts\\Discord.lnk"]
     bindings: ["alt+d"]
 
-  - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"]
+  # - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"]
+  #   bindings: ["alt+c"]
+
+  - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\cursor\\Cursor.exe"]
     bindings: ["alt+c"]
-  
+    
   - commands: ["shell-exec C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"]
     bindings: ["alt+e"]
 
@@ -296,6 +306,9 @@ keybindings:
 
   - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\GitHubDesktop\\GitHubDesktop.exe"]
     bindings: ["alt+g"]
+
+  - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\gather-electron\\Gather.exe"]
+    bindings: ["alt+shift+g"]
 
   - commands: ["shell-exec desk.cpl"]
     bindings: ["alt+m"]
@@ -320,6 +333,9 @@ keybindings:
 
   - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\slack\\slack.exe"]
     bindings: ["alt+s"]
+
+  - commands: ["shell-exec C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe --app=https://docs.google.com/document"]
+    bindings: ["alt+w"]
 
     ##############################################################
 

@@ -14,7 +14,7 @@ history = 10000                      # Increase scrollback buffer
 
 # Font Configuration
 [font]
-size = 15.0                          # Font size
+size = 13.5                          # Font size
 #normal = { family = "Iosevka Custom", style = "Regular" }
 #bold = { family = "Iosevka Custom", style = "Bold" }
 #italic = { family = "Iosevka Custom", style = "Italic" }
@@ -73,4 +73,5 @@ bindings = [
 
 # Shell Configuration (PowerShell by Default)
 [terminal]
-shell = { program = "C:/Users/BCS/Documents/start_nu.bat" }
+# shell = { program = "C:/Users/BCS/Documents/start_nu.bat" }
+shell = { program = "C:/Users/bensh/Documents/start_nu.bat" }
