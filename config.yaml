@@ -6,8 +6,8 @@ general:
   # another application). Here we are running a batch script to start Zebar.
   startup_commands: [
     "shell-exec zebar",
+    "shell-exec C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2025.30.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
     "shell-exec %USERPROFILE%\\AppData\\Local\\slack\\slack.exe",
-    "shell-exec %USERPROFILE%\\Git\\Windows-Config\\Shortcuts\\ChatGPT.lnk",
     "shell-exec C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
     # "shell-exec alacritty", 
     # "shell-exec code",
@@ -90,7 +90,9 @@ workspaces:
   ########## DESKTOP ##########
 
   - name: "1"
+    bind_to_monitor: 0
   - name: "2"
+    bind_to_monitor: 0
   - name: "3"
     bind_to_monitor: 1
   - name: "4"
@@ -138,6 +140,10 @@ window_rules:
   - commands: ["move --workspace 3"]
     match:
       - window_process: { regex: "msedge" }
+
+  - commands: ["move --workspace 5"]
+    match:
+      - window_process: { regex: "Genshin" }
 
   # - commands: ["move --workspace 4"]
   #   match:
@@ -280,7 +286,7 @@ keybindings:
     bindings: ["alt+enter"]
 
   # These 3 below have their exe's in folders reflecting their version number, so updates would break them, so I've used shortcuts instead
-  - commands: ["shell-exec %USERPROFILE%\\Git\\Windows-Config\\Shortcuts\\ChatGPT.lnk"]
+  - commands: ["shell-exec C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2025.30.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe"] # Shortcuts didn't work for this one
     bindings: ["alt+a"]
 
   - commands: ["shell-exec %USERPROFILE%\\Git\\Windows-Config\\Shortcuts\\IntelliJ IDEA 2024.lnk"]
