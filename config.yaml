@@ -6,9 +6,6 @@ general:
   # another application). Here we are running a batch script to start Zebar.
   startup_commands: [
     "shell-exec zebar",
-    "shell-exec C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2025.30.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
-    "shell-exec %USERPROFILE%\\AppData\\Local\\slack\\slack.exe",
-    "shell-exec C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
     # "shell-exec alacritty", 
     # "shell-exec code",
     # "shell-exec taskkill /IM WindowsTerminal.exe /F"
@@ -100,9 +97,13 @@ workspaces:
   - name: "5"
     bind_to_monitor: 2
   - name: "6"
+    bind_to_monitor: 2
   - name: "7"
+    bind_to_monitor: 2
   - name: "8"
+    bind_to_monitor: 2
   - name: "9"
+    bind_to_monitor: 2
 
     ########## Laptop ##########
 
@@ -286,7 +287,7 @@ keybindings:
     bindings: ["alt+enter"]
 
   # These 3 below have their exe's in folders reflecting their version number, so updates would break them, so I've used shortcuts instead
-  - commands: ["shell-exec C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2025.30.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe"] # Shortcuts didn't work for this one
+  - commands: ["shell-exec C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2025.34.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe"] # Shortcuts didn't work for this one
     bindings: ["alt+a"]
 
   - commands: ["shell-exec %USERPROFILE%\\Git\\Windows-Config\\Shortcuts\\IntelliJ IDEA 2024.lnk"]
