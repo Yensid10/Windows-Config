@@ -1,6 +1,5 @@
 # Set up Nushell configuration
 let carapace_completer = {|spans| carapace $spans.0 nushell}
-source ~/.config/nushell/completions/carapace.nu
 
 # Define a simpler prompt format first to debug
 def create_left_prompt [] {
