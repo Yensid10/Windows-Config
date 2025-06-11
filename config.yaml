@@ -136,7 +136,7 @@ window_rules:
       
   - commands:  ["move --workspace 2"]
     match:
-      - window_process: { regex: "ChatGPT" }
+      - window_process: { regex: "claude" }
 
   - commands: ["move --workspace 3"]
     match:
@@ -287,7 +287,7 @@ keybindings:
     bindings: ["alt+enter"]
 
   # These 3 below have their exe's in folders reflecting their version number, so updates would break them, so I've used shortcuts instead
-  - commands: ["shell-exec C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2025.41.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe"] # Shortcuts didn't work for this one
+  - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\AnthropicClaude\\claude.exe"] # Shortcuts didn't work for this one
     bindings: ["alt+a"]
 
   - commands: ["shell-exec %USERPROFILE%\\Git\\Windows-Config\\Shortcuts\\idea64.lnk"]
@@ -295,6 +295,9 @@ keybindings:
     
   - commands: ["shell-exec %USERPROFILE%\\Git\\Windows-Config\\Shortcuts\\Discord.lnk"]
     bindings: ["alt+d"]
+
+  - commands: ["shell-exec C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe"]
+    bindings: ["alt+shift+d"]
 
   # - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"]
   #   bindings: ["alt+c"]
