@@ -71,8 +71,6 @@ bindings = [
     { key = "I", mods = "Control|Shift", action = "ScrollPageDown" },
 ]
 
-# Shell Configuration (PowerShell by Default)
+# Shell Configuration
 [terminal]
-# shell = { program = "C:/Users/BCS/Documents/start_nu.bat" }
-shell = { program = "C:/Users/BCS/Documents/start_nu.bat" }
-# shell = { program = "C:/Users/bensh/Documents/start_nu.bat" }
+shell = { program = "nu" }
