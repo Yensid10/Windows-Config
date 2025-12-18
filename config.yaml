@@ -197,7 +197,7 @@ keybindings:
   - commands: ["shell-exec %USERPROFILE%\\Git\\Windows-Config\\Shortcuts\\Discord.lnk"]
     bindings: ["alt+d"]
 
-  - commands: ["shell-exec C:\\Users\\BCS\\AppData\\Local\\Programs\\Windsurf\\Windsurf.exe"]
+  - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\Windsurf\\Windsurf.exe"]
     bindings: ["alt+c"]
     
   - commands: ["shell-exec C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"] # Try to understand this program files thing?
@@ -229,6 +229,9 @@ keybindings:
 
   # - commands: ["shell-exec C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe --app=https://www.github.com/"]
   - commands: ["shell-exec C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --app=https://www.github.com/"]
+  # - commands: ["shell-exec C:\\ProgramData\\Ableton\\Live 12 Suite\\Program\\Ableton Live 12 Suite.exe"]
+  #   bindings: ["alt+shift+a"]
+
     bindings: ["alt+shift+g"]
 
   # - commands: ["shell-exec C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe --app=https://www.youtube.com/"]
