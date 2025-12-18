@@ -14,12 +14,12 @@ startup_mode = "Windowed"
 [scrolling]
 history = 10000                      # Increase scrollback buffer
 
-# Font Configuration
+# Font Configuration (To download use: winget install DEVCOM.JetBrainsMonoNerdFont)
 [font]
-size = 13.5                          # Font size
-#normal = { family = "Iosevka Custom", style = "Regular" }
-#bold = { family = "Iosevka Custom", style = "Bold" }
-#italic = { family = "Iosevka Custom", style = "Italic" }
+size = 13.5
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
 
 [font.offset]
 x = 0                                # Adjust for custom font width
@@ -74,4 +74,5 @@ bindings = [
 # Shell Configuration (PowerShell by Default)
 [terminal]
 # shell = { program = "C:/Users/BCS/Documents/start_nu.bat" }
-shell = { program = "C:/Users/bensh/Documents/start_nu.bat" }
+shell = { program = "C:/Users/BCS/Documents/start_nu.bat" }
+# shell = { program = "C:/Users/bensh/Documents/start_nu.bat" }
