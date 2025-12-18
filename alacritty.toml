@@ -1,4 +1,6 @@
 # "C:\Users\BCS\AppData\Roaming\alacritty\alacritty.toml"
+# [general]
+# import = ["C:/Users/BCS/Git/Windows-Config/alacritty.toml"]
 
 # General Settings
 [window]
@@ -61,12 +63,10 @@ text = "#0c0b0f"
 text = "#0c0b0f"
 background = "#bea3c7"
 
-# Keybindings for Splits and Pane Navigation
+# Keybindings
 [keyboard]
 bindings = [
     { key = "E", mods = "Control|Shift|Alt", action = "ToggleFullscreen" },
-    { key = "H", mods = "Control|Shift|Alt", command = { program = "alacritty", args = ["--split", "right"] }},
-    { key = "V", mods = "Control|Shift|Alt", command = { program = "alacritty", args = ["--split", "down"] }},
     { key = "U", mods = "Control|Shift", action = "ScrollPageUp" },
     { key = "I", mods = "Control|Shift", action = "ScrollPageDown" },
 ]
