@@ -227,11 +227,11 @@ keybindings:
   # - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\Opera GX\\opera.exe"]
   #   bindings: ["alt+o"]
 
-  # - commands: ["shell-exec C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe --app=https://www.github.com/"]
-  - commands: ["shell-exec C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --app=https://www.github.com/"]
   # - commands: ["shell-exec C:\\ProgramData\\Ableton\\Live 12 Suite\\Program\\Ableton Live 12 Suite.exe"]
   #   bindings: ["alt+shift+a"]
 
+  # - commands: ["shell-exec C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe --app=https://www.github.com/"]
+  - commands: ["shell-exec C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --app=https://www.github.com/"]
     bindings: ["alt+shift+g"]
 
   # - commands: ["shell-exec C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe --app=https://www.youtube.com/"]
