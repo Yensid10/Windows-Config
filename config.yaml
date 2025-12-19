@@ -230,8 +230,8 @@ keybindings:
   # - commands: ["shell-exec C:\\ProgramData\\Ableton\\Live 12 Suite\\Program\\Ableton Live 12 Suite.exe"]
   #   bindings: ["alt+shift+a"]
 
-  # - commands: ["shell-exec C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe --app=https://www.github.com/"]
-  - commands: ["shell-exec C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --app=https://www.github.com/"]
+  # - commands: ["shell-exec C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe --app=https://github.com/Yensid10?tab=repositories"]
+  - commands: ["shell-exec C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --app=https://github.com/Yensid10?tab=repositories"]
     bindings: ["alt+shift+g"]
 
   # - commands: ["shell-exec C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe --app=https://www.youtube.com/"]
