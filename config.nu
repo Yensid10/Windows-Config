@@ -64,3 +64,13 @@ alias ll = ls -l
 alias la = ls -la
 alias cls = clear
 alias .. = cd ..
+
+# Some XTDB Docker Dev Aliases
+def xtdb-reset [] {
+    # Silently remove if exists (ignore errors if not running)
+    docker rm -f xtdb | ignore
+    docker run -d --name xtdb -p 5433:5432 -p 8080:8080 ghcr.io/xtdb/xtdb
+    print "XTDB container reset and booting up on port 5433"
+}
+alias xtdb-con = psql -h localhost -p 5433 -U xtdb
+alias xtdb-logs = docker logs xtdb
