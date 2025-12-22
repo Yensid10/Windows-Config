@@ -69,8 +69,8 @@ alias .. = cd ..
 def xtdb-reset [] {
     # Silently remove if exists (ignore errors if not running)
     docker rm -f xtdb | ignore
-    docker run -d --name xtdb -p 5433:5432 -p 8080:8080 ghcr.io/xtdb/xtdb
-    print "XTDB container reset and booting up on port 5433"
+    docker run -d --name xtdb -p 5434:5432 -p 8080:8080 ghcr.io/xtdb/xtdb
+    print "XTDB container reset and booting up on port 5434"
 }
-alias xtdb-con = psql -h localhost -p 5433 -U xtdb
-alias xtdb-logs = docker logs xtdb
+alias xtdb-con = psql -h localhost -p 5434 -U xtdb
+alias xtdb-log = docker logs xtdb
