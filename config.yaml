@@ -138,9 +138,6 @@ window_rules:
         # Ignores picture-in-picture windows for browsers.
         window_class: {regex: "Chrome_WidgetWin_1|MozillaDialogClass"}
       - window_process: {equals: "PowerToys.PowerAccent"}
-        #Ignore setup/install/update boxes maybe?
-      - window_title: {regex: "[Ss]etup|[Ii]nstall"}
-      - window_class: {equals: "#32770"}
 
 binding_modes:
 
