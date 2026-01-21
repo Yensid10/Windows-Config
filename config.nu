@@ -50,13 +50,13 @@ $env.config = {
 # Environment - using ~ for portability
 $env.Path = ($env.Path
     | split row (char esep)
-    | prepend $"($nu.home-path)/AppData/Roaming/carapace/bin"
+    | prepend $"($nu.home-dir)/AppData/Roaming/carapace/bin"
     | prepend 'C:\Program Files\Git\bin'
     | prepend 'C:\Windows\System32'
 )
 
 # Starship config location
-$env.STARSHIP_CONFIG = $"($nu.home-path)/Git/Windows-Config/starship.toml"
+$env.STARSHIP_CONFIG = $"($nu.home-dir)/Git/Windows-Config/starship.toml"
 
 # Aliases
 def gitlog [] { git log --oneline --graph --all }

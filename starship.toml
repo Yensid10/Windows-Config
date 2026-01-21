@@ -10,6 +10,7 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:color_aqua bg:color_blue)\
+$package\
 $c\
 $cpp\
 $rust\
@@ -24,8 +25,16 @@ $python\
 $docker_context\
 $conda\
 $pixi\
+$aws\
+$gcloud\
+$azure\
+$kubernetes\
+$terraform\
+$helm\
 [](fg:color_bg3 bg:color_bg1)\
 $time\
+$cmd_duration\
+$shlvl\
 [ ](fg:color_bg1)\
 $line_break$character"""
 
@@ -162,6 +171,53 @@ format = '[[ $symbol( $environment) ](fg:#83a598 bg:color_bg3)]($style)'
 [pixi]
 style = "bg:color_bg3"
 format = '[[ $symbol( $version)( $environment) ](fg:color_fg0 bg:color_bg3)]($style)'
+
+[package]
+symbol = "󰏗"
+style = "bg:color_blue"
+format = '[[ $symbol $version ](fg:color_fg0 bg:color_blue)]($style)'
+
+[aws]
+symbol = "󰸏"
+style = "bg:color_bg3"
+format = '[[ $symbol ($region) ](fg:#83a598 bg:color_bg3)]($style)'
+
+[gcloud]
+symbol = "󱇶"
+style = "bg:color_bg3"
+format = '[[ $symbol ($project) ](fg:#83a598 bg:color_bg3)]($style)'
+
+[azure]
+symbol = "󰠅"
+style = "bg:color_bg3"
+format = '[[ $symbol ($subscription) ](fg:#83a598 bg:color_bg3)]($style)'
+
+[kubernetes]
+symbol = "󱃾"
+style = "bg:color_bg3"
+format = '[[ $symbol $context( \($namespace\)) ](fg:#83a598 bg:color_bg3)]($style)'
+
+[terraform]
+symbol = "󱁢"
+style = "bg:color_bg3"
+format = '[[ $symbol $workspace ](fg:#83a598 bg:color_bg3)]($style)'
+
+[helm]
+symbol = "󰠳"
+style = "bg:color_bg3"
+format = '[[ $symbol $version ](fg:#83a598 bg:color_bg3)]($style)'
+
+[cmd_duration]
+min_time = 2000
+style = "bg:color_bg1"
+format = '[[ 󱎫 $duration ](fg:color_yellow bg:color_bg1)]($style)'
+
+[shlvl]
+disabled = false
+threshold = 2
+symbol = "󰜮"
+style = "bg:color_bg1"
+format = '[[ $symbol $shlvl ](fg:color_white bg:color_bg1)]($style)'
 
 [time]
 disabled = false
