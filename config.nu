@@ -62,6 +62,7 @@ $env.STARSHIP_CONFIG = $"($nu.home-dir)/Git/Windows-Config/starship.toml"
 def gitlog [] { git log --oneline --graph --all }
 alias ll = ls -l
 alias la = ls -la
+alias lsa = ls **/*
 alias cls = clear
 alias .. = cd ..
 
