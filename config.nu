@@ -75,3 +75,13 @@ def xtdb-reset [] {
 }
 alias xtdb-con = psql -h localhost -p 5434 -U xtdb
 alias xtdb-log = docker logs xtdb
+
+def kanban [] {
+    cd /mnt/shared/GitHub/YensBan
+    npm run dev
+}
+
+def kanban-s [] {
+    cd /mnt/shared/GitHub/YensBan
+    npm run share
+}
