@@ -1,9 +1,7 @@
-# Add to default config location
-# source ~/Git/Windows-Config/config.nu
+# WSL Nushell Configuration
+# Copy to ~/.config/nushell/config.nu
 
-# Nushell Configuration
-
-# Carapace completer with alias support
+# Carapace completer with alias support (if carapace is installed)
 let carapace_completer = {|spans|
     let expanded_alias = (scope aliases | where name == $spans.0 | get -o 0 | get -o expansion)
 
@@ -23,7 +21,7 @@ $env.PROMPT_INDICATOR = ""
 
 # Main config
 $env.config = {
-    show_banner: false # Set true to see the elephant :)
+    show_banner: false
     edit_mode: "emacs"
     use_ansi_coloring: true
 
@@ -47,46 +45,29 @@ $env.config = {
     keybindings: []
 }
 
-# Environment - using ~ for portability
-$env.Path = ($env.Path
+# Environment - Linux paths
+$env.PATH = ($env.PATH
     | split row (char esep)
-    | prepend $"($nu.home-dir)/AppData/Roaming/carapace/bin"
-    | prepend 'C:\Program Files\Git\bin'
-    | prepend 'C:\Windows\System32'
+    | prepend '/usr/local/bin'
+    | prepend $'($env.HOME)/.local/bin'
+    | prepend $'($env.HOME)/.cargo/bin'
 )
 
-# Starship config location
-$env.STARSHIP_CONFIG = $"($nu.home-dir)/Git/Windows-Config/starship.toml"
+# Starship config - use the Windows config via WSL mount
+$env.STARSHIP_CONFIG = '/mnt/c/Users/bensh/Git/Windows-Config/starship.toml'
 
 # Aliases
 def gitlog [] { git log --oneline --graph --all }
 alias ll = ls -l
 alias la = ls -la
-alias lsa = ls **/*
 alias cls = clear
 alias .. = cd ..
-# sudo elevates so machine-scope packages (PowerShell, etc.) actually install.
-# Discord is pinned + self-updates; Slack self-updates — both handled outside winget.
-def winget-upgrade [] {
-    sudo winget upgrade --all --include-unknown --accept-package-agreements --accept-source-agreements
-}
 
-# Some XTDB Docker Dev Aliases
+# XTDB Docker Dev Aliases
 def xtdb-reset [] {
-    # Silently remove if exists (ignore errors if not running)
     docker rm -f xtdb | ignore
     docker run -d --name xtdb -p 5434:5432 -p 8080:8080 ghcr.io/xtdb/xtdb
     print "XTDB container reset and booting up on port 5434"
 }
 alias xtdb-con = psql -h localhost -p 5434 -U xtdb
 alias xtdb-log = docker logs xtdb
-
-def kanban [] {
-    cd /mnt/shared/GitHub/YensBan
-    npm run dev
-}
-
-def kanban-s [] {
-    cd /mnt/shared/GitHub/YensBan
-    npm run share
-}

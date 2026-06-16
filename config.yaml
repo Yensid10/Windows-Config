@@ -127,7 +127,7 @@ window_rules:
 
   - commands: ["move --workspace 5"]
     match:
-      - window_process: { regex: "Windsurf" } 
+      - window_process: { regex: "Code" } 
 
 
   - commands: ["ignore"]
@@ -194,7 +194,7 @@ keybindings:
   - commands: ["shell-exec %USERPROFILE%\\Git\\Windows-Config\\Shortcuts\\Discord.lnk"]
     bindings: ["alt+d"]
 
-  - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\Windsurf\\Windsurf.exe"]
+  - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"]
     bindings: ["alt+c"]
     
   - commands: ["shell-exec C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"] # Try to understand this program files thing?
