@@ -125,9 +125,9 @@ window_rules:
     match:
       - window_process: { regex: "GitHub" } 
 
-  - commands: ["move --workspace 5"]
-    match:
-      - window_process: { regex: "Code" } 
+  # - commands: ["move --workspace 5"]
+  #   match:
+  #     - window_process: { regex: "Code" } 
 
 
   - commands: ["ignore"]
@@ -215,24 +215,24 @@ keybindings:
   - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\Notion\\Notion.exe"]
     bindings: ["alt+n"]
 
-  - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\cron-web\\Notion Calendar.exe"]
+  - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\notion-calendar-web\\Notion Calendar.exe"]
     bindings: ["alt+shift+n"]
 
   - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\slack\\slack.exe"]
     bindings: ["alt+s"]
 
-  # - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\Opera GX\\opera.exe"]
-  #   bindings: ["alt+o"]
+  - commands: ["shell-exec %USERPROFILE%\\AppData\\Local\\Programs\\Opera GX\\opera.exe"]
+    bindings: ["alt+o"]
 
   # - commands: ["shell-exec C:\\ProgramData\\Ableton\\Live 12 Suite\\Program\\Ableton Live 12 Suite.exe"]
   #   bindings: ["alt+shift+a"]
 
-  # - commands: ["shell-exec C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe --app=https://github.com/Yensid10?tab=repositories"]
-  - commands: ["shell-exec C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --app=https://github.com/Yensid10?tab=repositories"]
+  - commands: ["shell-exec C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe --app=https://github.com/Yensid10?tab=repositories"]
+  # - commands: ["shell-exec C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --app=https://github.com/Yensid10?tab=repositories"]
     bindings: ["alt+shift+g"]
 
-  # - commands: ["shell-exec C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe --app=https://www.youtube.com/"]
-  - commands: ["shell-exec C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --app=https://www.youtube.com/"]
+  - commands: ["shell-exec C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe --app=https://www.youtube.com/"]
+  # - commands: ["shell-exec C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --app=https://www.youtube.com/"]
     bindings: ["alt+y"]
 
   # - commands: ["shell-exec C:\\Program Files\\Adobe\\Adobe Premiere Pro 2025\\Adobe Premiere Pro.exe"]
