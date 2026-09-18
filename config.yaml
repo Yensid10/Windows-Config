@@ -101,11 +101,11 @@ workspaces:
 
 
 window_rules:
-  - commands: ["move --workspace 1"]
+  - commands: ["move --workspace 2"]
     match:
       - window_process: { regex: "slack" }
 
-  - commands: ["move --workspace 2"]
+  - commands: ["move --workspace 1"]
     match:
       - window_process: { regex: "Discord" }
 
@@ -130,6 +130,29 @@ window_rules:
   #     - window_process: { regex: "Code" } 
 
 
+  # Snipping Tool is a capture overlay, not a window you want in the layout.
+  - commands: ["set-floating"]
+    match:
+      - window_process: { regex: "(?i)^(SnippingTool|ScreenClippingHost|ScreenSketch)$" }
+
+  ##### Citrix #####
+  # The launcher/auth windows stop pumping their message queue while they talk
+  # to StoreFront, so any SetWindowPos from the WM blocks and Windows kills them
+  # with AppHangB1. Never let Glaze touch them.
+  # Drop wfica32/wfcrun32 here if you ever want seamless published apps tiled.
+  - commands: ["ignore"]
+    match:
+      - window_process: { regex: "(?i)^(SelfService|SelfServicePlugin|Receiver|CDViewer|cpviewer|concentr|wfica32|wfcrun32|AuthManSvr|redirector|WebHelper|CitrixWorkspaceNotification)$" }
+      - window_process: { equals: "Citrix.EngineUI.App" }
+      # EngineUI parks a visible off-screen placeholder that Glaze would tile.
+      - window_title: { equals: "MockWindow" }
+
+  # The actual session window. Alone on workspace 5 it tiles to the full monitor
+  # minus the 40px outer gap, so it reads as maximised and Zebar stays visible.
+  - commands: ["move --workspace 5", "set-tiling"]
+    match:
+      - window_process: { equals: "Citrix.DesktopViewer.App" }
+
   - commands: ["ignore"]
     match:
       # Ignores any Zebar windows.
@@ -140,6 +163,12 @@ window_rules:
       - window_process: {equals: "PowerToys.PowerAccent"}
 
 binding_modes:
+  # Releases every Glaze binding except the one that exits, so alt+<key> and the
+  # mouse reach the Citrix session instead of the WM.
+  - name: "passthrough"
+    keybindings:
+      - commands: ["wm-disable-binding-mode --name passthrough"]
+        bindings: ["alt+shift+p"]
 
 keybindings:
   # Shift focus in a given direction.
@@ -182,6 +211,10 @@ keybindings:
     # Reload configuration file.
   - commands: ["wm-reload-config"]
     bindings: ["alt+escape"]
+
+    # Hand all keys to the focused app (use inside Citrix). Same key exits.
+  - commands: ["wm-enable-binding-mode --name passthrough"]
+    bindings: ["alt+shift+p"]
 
 ##### Custom Binds #####
 

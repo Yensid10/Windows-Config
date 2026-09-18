@@ -50,9 +50,11 @@ $env.config = {
 # Environment - using ~ for portability
 $env.Path = ($env.Path
     | split row (char esep)
+    | prepend ($nu.home-dir | path join '.local' 'bin')  # Claude Code native install (claude.exe)
     | prepend $"($nu.home-dir)/AppData/Roaming/carapace/bin"
     | prepend 'C:\Program Files\Git\bin'
     | prepend 'C:\Windows\System32'
+    | uniq
 )
 
 # Starship config location
@@ -69,12 +71,14 @@ alias .. = cd ..
 # Discord is pinned + self-updates; Slack self-updates — both handled outside winget.
 def winget-upgrade [] {
     sudo winget upgrade --all --include-unknown --accept-package-agreements --accept-source-agreements
-    # yt-dlp self-updates from GitHub — winget's manifest lags behind YouTube breakage
+    # yt-dlp self-updates from GitHub; winget's manifest lags behind YouTube breakage.
+    # Also pinned in winget (winget pin add yt-dlp.yt-dlp) because -U rewrites the exe
+    # winget hash-tracks, which otherwise fails with "Portable package has been modified".
     yt-dlp -U
 }
 
 # Pull every URL out of a string, even ones pasted back-to-back with no separator.
-# Used by yt-dwnld.
+# Used by the yt-dwnld family.
 def split-urls [text: string] {
     $text
     | str replace --all --regex 'https?://' "\n${0}"
@@ -83,32 +87,43 @@ def split-urls [text: string] {
     | where {|l| $l =~ '^https?://' }
 }
 
-# Batch-download YouTube audio as WAV (lossless intermediate for Premiere).
-# Usage:  yt-dwnld <url> <url> ...   downloads them all, one after another
-#         yt-dwnld                   prompt mode: paste a URL, press Enter, and it starts
-#                                    downloading in the background while you go find the
-#                                    next one. Type `exit` when done: waits for anything
-#                                    still downloading, opens the batch folder in Explorer,
-#                                    then closes the shell (stays open if anything failed).
-# Each run gets its own timestamped batch folder under Music\YT SC Download.
-def yt-dwnld [...urls: string] {
-    # Inside an existing batch folder (or a subfolder of one)? Add to it instead of starting a new one.
-    let root = ($nu.home-dir | path join 'Music' 'YT SC Download')
+# Every batch-folder root the downloaders use. Running one from inside any of these
+# (or a subfolder) adds to that folder instead of starting a new batch.
+def yt-roots [] {
+    [
+        ($nu.home-dir | path join 'Music' 'YT SC Download')
+        ($nu.home-dir | path join 'Music' 'YT Music Download')
+    ]
+}
+
+# Where this run saves: the folder you're standing in if it's already a batch folder,
+# otherwise a fresh timestamped one under `root`.
+def yt-dest [root: string] {
     let cwd = ($env.PWD | path expand)
-    let inside = (try { ($cwd | str lowercase) | path relative-to ($root | str lowercase) } catch { null })
-    let dest = if ($inside | is-not-empty) {
+    let inside = (yt-roots | any {|r|
+        (try { ($cwd | str lowercase) | path relative-to ($r | str lowercase) } catch { null }) | is-not-empty
+    })
+    if $inside {
         print $"Adding to the folder you're in: ($cwd)"
         $cwd
     } else {
         $root | path join (date now | format date '%Y-%m-%d %H-%M')
     }
+}
+
+# Shared engine behind yt-dwnld and yt-dwnld-mp3.
+#   root - batch-folder root to use when not already inside one
+#   fmt  - the yt-dlp flags that decide the output format
+#   raw  - URLs from the caller; empty means prompt mode
+def yt-dwnld-run [root: string, fmt: list<string>, raw: list<string>] {
+    let dest = (yt-dest $root)
     let template = ($dest | path join '%(title)s.%(ext)s')
 
     # Argument mode: one sequential yt-dlp run with live progress.
-    let urls = (split-urls ($urls | str join "\n"))
+    let urls = (split-urls ($raw | str join "\n"))
     if not ($urls | is-empty) {
         print $"Downloading ($urls | length) URLs into ($dest)"
-        yt-dlp -x --audio-format wav -o $template ...$urls
+        yt-dlp ...$fmt -o $template ...$urls
         return
     }
 
@@ -127,7 +142,7 @@ def yt-dwnld [...urls: string] {
         }
         for url in $batch {
             job spawn {
-                let r = (yt-dlp -x --audio-format wav -o $template --print after_move:filepath $url | complete)
+                let r = (yt-dlp ...$fmt -o $template --print after_move:filepath $url | complete)
                 if $r.exit_code == 0 {
                     print $"\r  done: ($r.stdout | str trim | path basename)\n> "
                 } else {
@@ -159,6 +174,37 @@ def yt-dwnld [...urls: string] {
     }
     print "Leaving the shell open so you can see the errors above. Failed:"
     for u in ($failed | get url) { print $"  ($u)" }
+}
+
+# Batch-download YouTube audio as WAV (lossless intermediate for Premiere).
+# Usage:  yt-dwnld <url> <url> ...   downloads them all, one after another
+#         yt-dwnld                   prompt mode: paste a URL, press Enter, and it starts
+#                                    downloading in the background while you go find the
+#                                    next one. Type `exit` when done: waits for anything
+#                                    still downloading, opens the batch folder in Explorer,
+#                                    then closes the shell (stays open if anything failed).
+# Each run gets its own timestamped batch folder under Music\YT SC Download.
+# Run it from inside one of those folders (cd there first) to add downloads to it instead.
+def yt-dwnld [...urls: string] {
+    yt-dwnld-run ($nu.home-dir | path join 'Music' 'YT SC Download') [
+        '-x' '--audio-format' 'wav'
+    ] $urls
+}
+
+# Same as yt-dwnld, but saves tagged M4A (AAC) ready to drop into Apple Music.
+# M4A rather than true MP3: YouTube already serves AAC, so the audio is copied out
+# untouched with no re-encode, and unlike WAV/FLAC it carries artwork and tags that
+# Music.app and iCloud sync keep. Title, artist, album and square cover art come
+# from YouTube, so you only tidy up what you care about.
+# Saves under Music\YT Music Download; same folder rules as yt-dwnld.
+def yt-dwnld-mp3 [...urls: string] {
+    yt-dwnld-run ($nu.home-dir | path join 'Music' 'YT Music Download') [
+        '-f' 'bestaudio[ext=m4a]/bestaudio'
+        '-x' '--audio-format' 'm4a' '--audio-quality' '0'
+        '--embed-metadata' '--embed-thumbnail'
+        '--convert-thumbnails' 'jpg'
+        '--ppa' 'ThumbnailsConvertor:-vf crop=ih:ih'
+    ] $urls
 }
 
 # Some XTDB Docker Dev Aliases
